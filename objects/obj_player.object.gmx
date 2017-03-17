@@ -33,39 +33,6 @@ friend1.owner = id;
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>obj_player</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>while (!keyboard_check(vk_up)) and (!keyboard_check(vk_down)) {
-    if (speed &gt; 0) {
-           speed -= 2
-    }
-    
-    if (speed &lt; 0) {
-           speed += 2
-    }
-    alarm[0]=room_speed;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -88,13 +55,14 @@ if (speed &gt; 5) {speed = 5;}
 if (speed &lt; -5) {speed = -5;}
 
 //Keys pressed
-if (keyboard_check(vk_right)) {image_angle= image_angle+2; direction=image_angle;}
-if (keyboard_check(vk_left)) {image_angle= image_angle-2;direction=image_angle;}
-if (keyboard_check(vk_up)) {speed+=2;}
-if (keyboard_check(vk_down)) {speed-=2;}
+if (keyboard_check(vk_right)) {image_angle= image_angle+2;}
+if (keyboard_check(vk_left)) {image_angle= image_angle-2;}
+if (keyboard_check(vk_up)) {motion_add(image_angle,.5);}
+if (keyboard_check(vk_down)) {motion_add(image_angle,-.5)}
 //Keys release
 if (!keyboard_check(vk_up)) and (!keyboard_check(vk_down)) {
-    alarm[0]=room_speed*2;
+    if(speed&gt;0) speed -=.3;
+    if(speed&lt;0) speed+=.3;
 }
 
 </string>
